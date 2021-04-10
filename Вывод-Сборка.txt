@@ -1,0 +1,8 @@
+﻿Сборка начата…
+1>------ Сборка начата: проект: PWDSAVER, Конфигурация: Release Any CPU ------
+1>C:\Users\Sergey\Desktop\Twinx_on_csharp-main\Form1.cs(14,16,14,17): warning CS0169: Поле "Form1.m" никогда не используется.
+1>C:\Users\Sergey\Desktop\Twinx_on_csharp-main\Form1.cs(14,19,14,20): warning CS0169: Поле "Form1.s" никогда не используется.
+1>C:\Users\Sergey\Desktop\Twinx_on_csharp-main\Form1.cs(14,13,14,14): warning CS0169: Поле "Form1.h" никогда не используется.
+1>C:\Users\Sergey\Desktop\Twinx_on_csharp-main\Form1.cs(13,16,13,27): warning CS0169: Поле "Form1.currentDate" никогда не используется.
+1>  PWDSAVER -> C:\Users\Sergey\Desktop\Twinx_on_csharp-main\bin\Release\PWDSAVER.exe
+========== Сборка: успешно: 1, с ошибками: 0, без изменений: 0, пропущено: 0 ==========
