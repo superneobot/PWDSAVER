@@ -25,7 +25,12 @@ namespace PWDSAVER
 
         private void linkLabel1_MouseClick(object sender, MouseEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/superneobot/Twinx_on_csharp-main");
+            System.Diagnostics.Process.Start("https://github.com/superneobot/PWDSAVER");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Xml.Linq;
+using System.IO.Compression;
 
 namespace PWDSAVER
 {
@@ -11,11 +12,39 @@ namespace PWDSAVER
     public partial class Form1 : Form
     {
         string t = " ";
+        private bool hide;
+        string savemet;
+        string backup;
+        string autoran;
+        string backup_date;
+        const string name = "TwinX";
         DateTime DTN;
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public bool SetAutorunValue(bool autorun)
+        {
+            string ExePath = System.Windows.Forms.Application.ExecutablePath;
+            RegistryKey reg;
+            //MessageBox.Show(ExePath);
+            reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run\\");
+            try
+            {
+                if (autorun)
+                    reg.SetValue(name, ExePath);
+                else
+                    reg.DeleteValue(name);
+
+                reg.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
         private void text_selectandcopy(object sender, EventArgs e)
@@ -109,6 +138,9 @@ namespace PWDSAVER
             settings.Write("Top", Top.ToString(), "Settings");
             settings.Write("Left", Left.ToString(), "Settings");
             settings.Write("Program", Text, "Settings");
+
+            //Выбор способа хранения данных
+        //    if ()
         }
 
         private void writedatatoini()
@@ -116,6 +148,7 @@ namespace PWDSAVER
             //Сохранение данных в ini файл
             var data = new IniFile("data.ini");
             //page 1-12 
+            load.Visible = true;
             load.Value = 16;
             for (int i = 1; i <= 12; i++)
             {
@@ -177,60 +210,84 @@ namespace PWDSAVER
             }
             //Сохранение настроек приложения и данных
             savesettings();
-            writetoxml();
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            this.Show();
-        }
-
-        private void trayicon_MouseClick(object sender, MouseEventArgs e)
-        {
-            //this.Show();
-        }
-
-        private void trayicon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            this.Hide();
-        }
+            if (savemet == "xml")
+            {
+                writetoxml();
+            }
+            else
+                if (savemet == "ini")
+            {
+                writedatatoini();
+            }
+        }           
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            var settings = new IniFile(@"settings.ini");
+            autoran = settings.Read("Autorun", "Settings");
+            if (autoran == "True")
+            {
+                autoload.Checked = true;
+            }
+            else
+            {
+                autoload.Checked = false;
+            }
+
+
+            savemet = settings.Read("Save method", "Settings");
             //Загрузка настроек приложения
             if (File.Exists("settings.ini"))
             {
-                var settings = new IniFile(@"settings.ini");
                 Top = Convert.ToInt32(settings.Read("Top", "Settings"));
                 Left = Convert.ToInt32(settings.Read("Left", "Settings"));
             }
             else
-            {
+            {             
+                settings.Write("Save method", "ini", "Settings");
+                settings.Write("Autorun", "False", "Settings");
+                savemet = "ini";
+                autoran = "False";
+                saveasini.Checked = true;
                 Top = 300;
                 Left = 600;
             }
-
-            //Загрузка данных
-            if (File.Exists("data.xml"))
+            if (savemet == "xml")
             {
-                loadfromxml();
+                saveasxml.Checked = true;
+                saveasini.Checked = false;
+                //Загрузка данных из XML
+                if (File.Exists("data.xml"))
+                {
+                    loadfromxml();
+                }
+                else
+                {
+                    MessageBox.Show("Первый запуск приложения. Будут созданы файлы с настройками и данными.");
+                    savesettings();
+                    writetoxml();
+                }
             }
-            else
+                if (savemet == "ini")
             {
-                MessageBox.Show("Первый запуск приложения. Будут созданы файлы с настройками и данными.");
-                savesettings();
-                writetoxml();
+                saveasini.Checked = true;
+                saveasxml.Checked = false;
+                //Загрузка данных из INI
+                if (File.Exists("data.ini"))
+                {
+                    loadfromini();
+                }
+                else
+                {
+                    MessageBox.Show("Первый запуск приложения. Будут созданы файлы с настройками и данными.");
+                    savesettings();
+                    writedatatoini();
+                }
             }
-
 
         }
 
-        private void updatedata()
+        private void loadfromini()
         {
             //load data
             var data = new IniFile(@"data.ini");
@@ -287,7 +344,8 @@ namespace PWDSAVER
             //Запись данных в xml файл
             XDocument xDoc = new XDocument();
             XElement xroot = new XElement("Database");
-
+            load.Visible = true;
+            load.Value = 10;
             //Создаем первый элемент
             for (int i = 1; i <= 12; i++)
             {
@@ -298,7 +356,7 @@ namespace PWDSAVER
                         new XElement("password", tabPage1.Controls["password" + i].Text)
                     ));
             }
-
+            load.Value = 20;
             for (int i = 13; i <= 24; i++)
             {
                 xroot.Add(
@@ -308,7 +366,7 @@ namespace PWDSAVER
                        new XElement("password", tabPage2.Controls["password" + i].Text)
                    ));
             }
-
+            load.Value = 30;
             for (int i = 25; i <= 36; i++)
             {
                 xroot.Add(
@@ -318,7 +376,7 @@ namespace PWDSAVER
                        new XElement("password", tabPage3.Controls["password" + i].Text)
                    ));
             }
-
+            load.Value = 45;
             for (int i = 37; i <= 48; i++)
             {
                 xroot.Add(
@@ -328,7 +386,7 @@ namespace PWDSAVER
                       new XElement("password", tabPage4.Controls["password" + i].Text)
                   ));
             }
-
+            load.Value = 60;
             for (int i = 49; i <= 60; i++)
             {
                 xroot.Add(
@@ -338,7 +396,7 @@ namespace PWDSAVER
                       new XElement("password", tabPage5.Controls["password" + i].Text)
                   ));
             }
-
+            load.Value = 80;
             for (int i = 61; i <= 72; i++)
             {
                 xroot.Add(
@@ -351,6 +409,8 @@ namespace PWDSAVER
             xroot.Add(xroot);
             xDoc.Add(xroot);
             xDoc.Save("data.xml");
+            load.Value = 100;
+            loader.Enabled = true;
         }
 
         private void loadfromxml()
@@ -422,8 +482,15 @@ namespace PWDSAVER
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-          //  updatedata();
-            loadfromxml();
+            if (savemet == "xml")
+            {
+                loadfromxml();
+            }
+            
+            if (savemet == "ini")
+            {
+                loadfromini();
+            }
         }
 
         private void loader_Tick(object sender, EventArgs e)
@@ -431,17 +498,20 @@ namespace PWDSAVER
 
             if (load.Value == load.Maximum)
             {
-                Text = "Twinx [данные загружены]";
+                if (savemet == "ini")
+                {
+                    Text = "Twinx [данные загружены] - INI";
+                }
+                if (savemet == "xml")
+                {
+                    Text = "Twinx [данные загружены] - XML";
+                }
+                    
                 load.Visible = false;
                 loader.Enabled = false;
                 
             }
-        }
-
-        private void trayicon_Click(object sender, EventArgs e)
-        {
-            Show();
-        }
+        }        
 
         private void параметрыToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -457,17 +527,147 @@ namespace PWDSAVER
 
         private void автозагразкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var settings = new IniFile(@"settings.ini");
             //Автозагразука приложения
+            if (autoload.Checked != false)
+            {
+                SetAutorunValue(true);
+                autoload.Checked = true;
+                settings.Write("Autorun", (autoload.Checked).ToString(), "Settings");
+                autoran = "True";
+            }
+            else
+            {
+                SetAutorunValue(false);
+                autoload.Checked = false;
+                settings.Write("Autorun", (autoload.Checked).ToString(), "Settings");
+                autoran = "False";
+            }
         }
 
         private void сохранятьВINIToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Сохранение данных в файл INI
+            var settings = new IniFile(@"settings.ini");            
+            if (saveasini.Checked != false)
+            {
+                saveasini.Checked = true;
+                saveasxml.Checked = false;
+                settings.Write("Save method", "ini", "Settings");
+                savemet = "ini";
+                writedatatoini();
+                System.IO.File.Delete(@"data.xml");
+            }
+            else
+            {
+                saveasini.Checked = false;
+                saveasxml.Checked = true;
+                settings.Write("Save method", "xml", "Settings");
+                savemet = "xml";
+            }
+                
         }
 
         private void сохранятьВXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Сохранение данных в файл XML
+            var settings = new IniFile(@"settings.ini");
+            if (saveasxml.Checked != false)
+            {
+                saveasxml.Checked = true;
+                saveasini.Checked = false;
+                settings.Write("Save method", "xml", "Settings");
+                savemet = "xml";
+                writetoxml();
+                System.IO.File.Delete(@"data.ini");
+            }
+            else
+            {
+                saveasxml.Checked = false;
+                saveasini.Checked = true;
+                settings.Write("Save method", "ini", "Settings");
+                savemet = "ini";
+            }
+        }
+
+        private void gdrive_backup_Click(object sender, EventArgs e)
+        {
+            backup_date = DTN.Month.ToString() + "-" + DTN.Day.ToString() + "-" + DTN.Year.ToString() + "-" + DTN.Hour.ToString() + "-" + DTN.Minute.ToString() + "-" + DTN.Second.ToString();
+            backup = "backup_" + backup_date +".zip";
+
+            //Архивация файла данных
+            if (File.Exists("archive.zip"))
+            {
+               // System.IO.File.Delete(@"archive.zip");
+                string archivePath = backup;
+                using (ZipArchive zipArchive = ZipFile.Open(archivePath, ZipArchiveMode.Create))
+                {
+                    if (savemet == "ini")
+                    {
+                        const string pathFileToAdd = @"data.ini";
+                        const string nameFileToAdd = "data.ini";
+                        zipArchive.CreateEntryFromFile(pathFileToAdd, nameFileToAdd);
+
+                    }
+                    if (savemet == "xml")
+                    {
+                        const string pathFileToAdd = @"data.xml";
+                        const string nameFileToAdd = "data.xml";
+                        zipArchive.CreateEntryFromFile(pathFileToAdd, nameFileToAdd);
+                    }
+
+                }
+            }
+            else
+            {
+                const string archivePath = @"archive.zip";
+                using (ZipArchive zipArchive = ZipFile.Open(archivePath, ZipArchiveMode.Create))
+                {
+                    if (savemet == "ini")
+                    {                        
+                        const string pathFileToAdd = @"data.ini";
+                        const string nameFileToAdd = "data.ini";
+                        zipArchive.CreateEntryFromFile(pathFileToAdd, nameFileToAdd);
+
+                    }
+                    if (savemet == "xml")
+                    {
+                        const string pathFileToAdd = @"data.xml";
+                        const string nameFileToAdd = "data.xml";
+                        zipArchive.CreateEntryFromFile(pathFileToAdd, nameFileToAdd);
+                    }
+
+                }
+            }
+            MessageBox.Show("Резервная копия создана!", "Twinx");
+        }
+
+        private void rbmenu_Opened(object sender, EventArgs e)
+        {
+            if (this.Visible == true)
+            {
+                toolStripMenuItem1.Text = "Свернуть";
+                hide = false;
+                toolStripMenuItem1.Image = Twinx.Properties.Resources.down;
+            }
+            if (this.Visible == false)
+            {
+                toolStripMenuItem1.Text = "Развернуть";
+                hide = true;
+                toolStripMenuItem1.Image = Twinx.Properties.Resources.up;
+            }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (hide == true)
+            {
+                this.Show();
+            }
+            if (hide == false)
+            {
+                this.Hide();
+            }
         }
     }
 }

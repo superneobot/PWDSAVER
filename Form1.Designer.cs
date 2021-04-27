@@ -33,6 +33,17 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.rbmenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoload = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveasini = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveasxml = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранятьВJSONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gdrive_backup = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.password12 = new System.Windows.Forms.TextBox();
             this.login12 = new System.Windows.Forms.TextBox();
             this.name12 = new System.Windows.Forms.Label();
@@ -261,15 +272,6 @@
             this.trayicon = new System.Windows.Forms.NotifyIcon(this.components);
             this.load = new System.Windows.Forms.ProgressBar();
             this.loader = new System.Windows.Forms.Timer(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.автозагразкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранятьВINIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранятьВXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.rbmenu.SuspendLayout();
@@ -356,6 +358,104 @@
             this.toolStripMenuItem5});
             this.rbmenu.Name = "contextMenuStrip1";
             this.rbmenu.Size = new System.Drawing.Size(185, 182);
+            this.rbmenu.Opened += new System.EventHandler(this.rbmenu_Opened);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::Twinx.Properties.Resources.up;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem1.Text = "Развернуть";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Image = global::Twinx.Properties.Resources.down;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem2.Text = "Свернуть";
+            this.toolStripMenuItem2.Visible = false;
+            // 
+            // параметрыToolStripMenuItem
+            // 
+            this.параметрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoload,
+            this.saveasini,
+            this.saveasxml,
+            this.сохранятьВJSONToolStripMenuItem,
+            this.gdrive_backup});
+            this.параметрыToolStripMenuItem.Image = global::Twinx.Properties.Resources.property;
+            this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
+            this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.параметрыToolStripMenuItem.Text = "Параметры";
+            this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.параметрыToolStripMenuItem_Click);
+            // 
+            // autoload
+            // 
+            this.autoload.CheckOnClick = true;
+            this.autoload.Image = global::Twinx.Properties.Resources.paper_clip_1;
+            this.autoload.Name = "autoload";
+            this.autoload.Size = new System.Drawing.Size(168, 22);
+            this.autoload.Text = "&Автозагразка";
+            this.autoload.Click += new System.EventHandler(this.автозагразкаToolStripMenuItem_Click);
+            // 
+            // saveasini
+            // 
+            this.saveasini.CheckOnClick = true;
+            this.saveasini.Image = global::Twinx.Properties.Resources.italic;
+            this.saveasini.Name = "saveasini";
+            this.saveasini.Size = new System.Drawing.Size(168, 22);
+            this.saveasini.Text = "&Сохранять в INI";
+            this.saveasini.Click += new System.EventHandler(this.сохранятьВINIToolStripMenuItem_Click);
+            // 
+            // saveasxml
+            // 
+            this.saveasxml.CheckOnClick = true;
+            this.saveasxml.Image = global::Twinx.Properties.Resources.font_сolor;
+            this.saveasxml.Name = "saveasxml";
+            this.saveasxml.Size = new System.Drawing.Size(168, 22);
+            this.saveasxml.Text = "&Сохранять в XML";
+            this.saveasxml.Click += new System.EventHandler(this.сохранятьВXMLToolStripMenuItem_Click);
+            // 
+            // сохранятьВJSONToolStripMenuItem
+            // 
+            this.сохранятьВJSONToolStripMenuItem.CheckOnClick = true;
+            this.сохранятьВJSONToolStripMenuItem.Enabled = false;
+            this.сохранятьВJSONToolStripMenuItem.Name = "сохранятьВJSONToolStripMenuItem";
+            this.сохранятьВJSONToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.сохранятьВJSONToolStripMenuItem.Text = "&Сохранять в БД";
+            // 
+            // gdrive_backup
+            // 
+            this.gdrive_backup.Image = global::Twinx.Properties.Resources._lock;
+            this.gdrive_backup.Name = "gdrive_backup";
+            this.gdrive_backup.Size = new System.Drawing.Size(168, 22);
+            this.gdrive_backup.Text = "&Резервная копия";
+            this.gdrive_backup.Click += new System.EventHandler(this.gdrive_backup_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Image = global::Twinx.Properties.Resources.update;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem3.Text = "Обновить";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Image = global::Twinx.Properties.Resources.bulb;
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem4.Text = "О программе";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Image = global::Twinx.Properties.Resources.exit;
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem5.Text = "Выход";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // password12
             // 
@@ -3067,9 +3167,6 @@
             this.trayicon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayicon.Icon")));
             this.trayicon.Text = "Twinx";
             this.trayicon.Visible = true;
-            this.trayicon.Click += new System.EventHandler(this.trayicon_Click);
-            this.trayicon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.trayicon_MouseClick);
-            this.trayicon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayicon_MouseDoubleClick);
             // 
             // load
             // 
@@ -3085,82 +3182,6 @@
             // 
             this.loader.Interval = 500;
             this.loader.Tick += new System.EventHandler(this.loader_Tick);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = global::PWDSAVER.Properties.Resources.up;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
-            this.toolStripMenuItem1.Text = "Развернуть";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Image = global::PWDSAVER.Properties.Resources.down;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 26);
-            this.toolStripMenuItem2.Text = "Свернуть";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // параметрыToolStripMenuItem
-            // 
-            this.параметрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.автозагразкаToolStripMenuItem,
-            this.сохранятьВINIToolStripMenuItem,
-            this.сохранятьВXMLToolStripMenuItem});
-            this.параметрыToolStripMenuItem.Image = global::PWDSAVER.Properties.Resources.property;
-            this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
-            this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.параметрыToolStripMenuItem.Text = "Параметры";
-            this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.параметрыToolStripMenuItem_Click);
-            // 
-            // автозагразкаToolStripMenuItem
-            // 
-            this.автозагразкаToolStripMenuItem.Image = global::PWDSAVER.Properties.Resources.paper_clip_1;
-            this.автозагразкаToolStripMenuItem.Name = "автозагразкаToolStripMenuItem";
-            this.автозагразкаToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.автозагразкаToolStripMenuItem.Text = "Автозагразка";
-            this.автозагразкаToolStripMenuItem.Click += new System.EventHandler(this.автозагразкаToolStripMenuItem_Click);
-            // 
-            // сохранятьВINIToolStripMenuItem
-            // 
-            this.сохранятьВINIToolStripMenuItem.Image = global::PWDSAVER.Properties.Resources.italic;
-            this.сохранятьВINIToolStripMenuItem.Name = "сохранятьВINIToolStripMenuItem";
-            this.сохранятьВINIToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.сохранятьВINIToolStripMenuItem.Text = "Сохранять в INI";
-            this.сохранятьВINIToolStripMenuItem.Click += new System.EventHandler(this.сохранятьВINIToolStripMenuItem_Click);
-            // 
-            // сохранятьВXMLToolStripMenuItem
-            // 
-            this.сохранятьВXMLToolStripMenuItem.Image = global::PWDSAVER.Properties.Resources.font_сolor;
-            this.сохранятьВXMLToolStripMenuItem.Name = "сохранятьВXMLToolStripMenuItem";
-            this.сохранятьВXMLToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.сохранятьВXMLToolStripMenuItem.Text = "Сохранять в XML";
-            this.сохранятьВXMLToolStripMenuItem.Click += new System.EventHandler(this.сохранятьВXMLToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Image = global::PWDSAVER.Properties.Resources.update;
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(184, 26);
-            this.toolStripMenuItem3.Text = "Обновить";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Image = global::PWDSAVER.Properties.Resources.bulb;
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(184, 26);
-            this.toolStripMenuItem4.Text = "О программе";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Image = global::PWDSAVER.Properties.Resources.exit;
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(184, 26);
-            this.toolStripMenuItem5.Text = "Выход";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
             // 
             // Form1
             // 
@@ -3443,9 +3464,11 @@
         private System.Windows.Forms.Label name61;
         private System.Windows.Forms.Timer loader;
         private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem автозагразкаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранятьВINIToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранятьВXMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoload;
+        private System.Windows.Forms.ToolStripMenuItem saveasini;
+        private System.Windows.Forms.ToolStripMenuItem saveasxml;
+        private System.Windows.Forms.ToolStripMenuItem сохранятьВJSONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gdrive_backup;
     }
 }
 

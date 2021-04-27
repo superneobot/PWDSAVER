@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{255C28DF-740B-44A1-87B4-2E573134EED5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PWDSAVER</RootNamespace>
-    <AssemblyName>PWDSAVER</AssemblyName>
+    <RootNamespace>Twinx</RootNamespace>
+    <AssemblyName>Twinx</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -56,6 +56,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,12 +89,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
     <Compile Include="IniFile.cs" />
     <Compile Include="InputBox.cs" />
     <Compile Include="Program.cs" />
@@ -107,9 +109,6 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -123,6 +122,8 @@
     <None Include="Resources\paper clip 1.png" />
     <None Include="Resources\italic.png" />
     <None Include="Resources\font сolor.png" />
+    <None Include="Resources\Google-Drive-icon.png" />
+    <None Include="Resources\lock.png" />
     <Content Include="twinx.ico" />
     <None Include="Resources\free-icon-security-2919734.png" />
     <None Include="Resources\update.png" />
