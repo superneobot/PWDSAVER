@@ -345,6 +345,7 @@
             this.tabPage1.Size = new System.Drawing.Size(258, 507);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1-12";
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // rbmenu
             // 
@@ -430,6 +431,104 @@
             this.gdrive_backup.Image = global::Twinx.Properties.Resources._lock;
             this.gdrive_backup.Name = "gdrive_backup";
             this.gdrive_backup.Size = new System.Drawing.Size(168, 22);
+            this.gdrive_backup.Text = "&Резервная копия";
+            this.gdrive_backup.Click += new System.EventHandler(this.gdrive_backup_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Image = global::Twinx.Properties.Resources.update;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem3.Text = "Обновить";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Image = global::Twinx.Properties.Resources.bulb;
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem4.Text = "О программе";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Image = global::Twinx.Properties.Resources.exit;
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem5.Text = "Выход";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = global::Twinx.Properties.Resources.up;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem1.Text = "Развернуть";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Image = global::Twinx.Properties.Resources.down;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem2.Text = "Свернуть";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // параметрыToolStripMenuItem
+            // 
+            this.параметрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoload,
+            this.saveasini,
+            this.saveasxml,
+            this.сохранятьВJSONToolStripMenuItem,
+            this.gdrive_backup});
+            this.параметрыToolStripMenuItem.Image = global::Twinx.Properties.Resources.property;
+            this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
+            this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.параметрыToolStripMenuItem.Text = "Параметры";
+            this.параметрыToolStripMenuItem.Click += new System.EventHandler(this.параметрыToolStripMenuItem_Click);
+            // 
+            // autoload
+            // 
+            this.autoload.CheckOnClick = true;
+            this.autoload.Image = global::Twinx.Properties.Resources.paper_clip_1;
+            this.autoload.Name = "autoload";
+            this.autoload.Size = new System.Drawing.Size(184, 26);
+            this.autoload.Text = "&Автозагразка";
+            this.autoload.Click += new System.EventHandler(this.автозагразкаToolStripMenuItem_Click);
+            // 
+            // saveasini
+            // 
+            this.saveasini.CheckOnClick = true;
+            this.saveasini.Image = global::Twinx.Properties.Resources.italic;
+            this.saveasini.Name = "saveasini";
+            this.saveasini.Size = new System.Drawing.Size(184, 26);
+            this.saveasini.Text = "&Сохранять в INI";
+            this.saveasini.Click += new System.EventHandler(this.сохранятьВINIToolStripMenuItem_Click);
+            // 
+            // saveasxml
+            // 
+            this.saveasxml.CheckOnClick = true;
+            this.saveasxml.Image = global::Twinx.Properties.Resources.font_сolor;
+            this.saveasxml.Name = "saveasxml";
+            this.saveasxml.Size = new System.Drawing.Size(184, 26);
+            this.saveasxml.Text = "&Сохранять в XML";
+            this.saveasxml.Click += new System.EventHandler(this.сохранятьВXMLToolStripMenuItem_Click);
+            // 
+            // сохранятьВJSONToolStripMenuItem
+            // 
+            this.сохранятьВJSONToolStripMenuItem.CheckOnClick = true;
+            this.сохранятьВJSONToolStripMenuItem.Enabled = false;
+            this.сохранятьВJSONToolStripMenuItem.Name = "сохранятьВJSONToolStripMenuItem";
+            this.сохранятьВJSONToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.сохранятьВJSONToolStripMenuItem.Text = "&Сохранять в БД";
+            this.сохранятьВJSONToolStripMenuItem.Click += new System.EventHandler(this.сохранятьВJSONToolStripMenuItem_Click);
+            // 
+            // gdrive_backup
+            // 
+            this.gdrive_backup.Image = global::Twinx.Properties.Resources._lock;
+            this.gdrive_backup.Name = "gdrive_backup";
+            this.gdrive_backup.Size = new System.Drawing.Size(184, 26);
             this.gdrive_backup.Text = "&Резервная копия";
             this.gdrive_backup.Click += new System.EventHandler(this.gdrive_backup_Click);
             // 
